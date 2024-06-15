@@ -9,6 +9,10 @@ const vehicleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description:{
+        type: String,
+        required: true,
+    },
     image: {
         type: String,
         required: true
@@ -17,7 +21,10 @@ const vehicleSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    
+    year:{
+        type: Number,
+        required: true,
+    },
     available: {
         type: Boolean,
         default: true
