@@ -62,3 +62,4 @@ seedDB().then(() => {
     console.log(`Seeds creadas correctamente!`)
     mongoose.connection.close();
 });
+// para ejecutar la seed hacemos node seed.js
