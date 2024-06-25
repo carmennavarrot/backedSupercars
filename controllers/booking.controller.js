@@ -5,7 +5,7 @@ const bookingController = {
     // Crear una nueva reserva
     createBooking: async (req, res) => {
         try {
-            const { user, vehicle, startDate, endDate, price, discount } = req.body;
+            const { vehicle, startDate, endDate, price, discount } = req.body;
 
             // Verificar disponibilidad del vehículo
             const vehicleAvailable = await Vehicle.findById(vehicle);
@@ -14,7 +14,7 @@ const bookingController = {
             }
 
             const newBooking = new Booking({
-                user,
+                user: req.user._id,
                 vehicle,
                 startDate,
                 endDate,
@@ -80,7 +80,17 @@ const bookingController = {
         } catch (error) {
             res.status(500).json({ message: 'Error al cancelar la reserva', error: error.message });
         }
+    },
+    // obtener todas las reservas
+    getAllBookings: async (req, res) => {
+        try {
+            const bookings = await Booking.find().populate('user vehicle');
+            res.status(200).json(bookings);
+        } catch (error) {
+            res.status(500).json({ message: 'Error al obtener todas las reservas', error: error.message });
+        }
     }
 };
+
 
 module.exports = bookingController;
