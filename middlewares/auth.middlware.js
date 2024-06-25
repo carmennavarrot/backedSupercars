@@ -21,6 +21,7 @@ const protect = async (req, res, next) => {
         }
 
         req.user = currentUser;
+        req.user.role = decoded.role;
         next();
     } catch (error) {
         return res.status(401).json({ message: 'Token no válido', error: error.message });
