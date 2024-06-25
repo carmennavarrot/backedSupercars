@@ -15,4 +15,7 @@ router.post('/login', userController.login);
 // Asegúrate de que solo usuarios logueados puedan acceder a esta ruta
 router.patch('/update/:userId', protect, userController.updateProfile);
 
+// Ruta para obtener todos los usuarios (solo accesible para administradores)
+router.get('/', protect, restrictTo('admin'), userController.getAllUsers);
+
 module.exports = router;
